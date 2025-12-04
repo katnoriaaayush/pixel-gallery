@@ -126,34 +126,76 @@ h1, h2, h3 {
     box-shadow: 0 0 0 4px #333; /* Double border effect */
 }
 
-/* Gallery Grid */
+/* Photobooth Gallery */
 .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
     padding: 20px;
 }
 
-.gallery-item {
-    transition: transform 0.2s;
+.photobooth-strip {
+    background: #fff0f5; /* Lavender/Pinkish background */
+    border: 4px solid #ffb7b2; /* Cute pink border */
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 280px;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
-.gallery-item:hover {
-    transform: scale(1.05);
+.photobooth-strip:hover {
+    transform: translateY(-10px);
 }
 
-.pixel-frame {
-    background: white;
-    padding: 10px;
-    border: 4px solid black;
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
-}
-
-.pixel-frame img {
+.photobooth-strip img {
     width: 100%;
-    height: auto;
-    display: block;
-    border: 2px solid #eee;
+    height: 200px; /* Fixed height for uniformity */
+    object-fit: cover;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.strip-footer {
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: #ff6b6b;
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+/* Removed old gallery-item/pixel-frame styles */
+
+.gif-playground {
+    margin-top: 50px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+}
+
+.gif-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.gif-row img {
+    height: 100px; /* Standard height for GIFs */
+    width: auto;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.gif-row img:hover {
+    transform: scale(1.2) rotate(10deg);
 }
 
 footer {
@@ -165,4 +207,61 @@ footer {
 
 .heart {
     color: var(--primary-color);
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Smaller title */
+    }
+
+    .pixel-bubble {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .characters {
+        height: 150px; /* Reduce height */
+        margin-bottom: 20px;
+    }
+
+    .character {
+        width: 100px; /* Smaller characters */
+    }
+
+    .rpg-box {
+        font-size: 1.2rem;
+        margin: 10px;
+    }
+
+    .gallery-grid {
+        gap: 20px;
+    }
+
+    .photobooth-strip {
+        width: 100%; /* Full width on mobile */
+        max-width: 300px; /* But don't get too huge */
+    }
+
+    .gif-row img {
+        height: 80px; /* Smaller GIFs */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .character {
+        width: 80px;
+    }
+    
+    .gif-row {
+        gap: 15px;
+    }
 }
