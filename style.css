@@ -1,6 +1,6 @@
 :root {
-    --bg-color: #f0f0f0;
-    --text-color: #2c2c2c;
+    --bg-color: #F0E7D5; /* Vanilla Cream */
+    --text-color: #212842; /* Midnight Indigo */
     --pixel-border: 4px;
     --primary-color: #ff6b6b;
     --secondary-color: #4ecdc4;
@@ -16,11 +16,12 @@ body {
     padding: 0;
     font-family: 'VT323', monospace;
     background-color: var(--bg-color);
+    /* Subtle pattern using the new colors */
     background-image: 
-        linear-gradient(45deg, #e0e0e0 25%, transparent 25%), 
-        linear-gradient(-45deg, #e0e0e0 25%, transparent 25%), 
-        linear-gradient(45deg, transparent 75%, #e0e0e0 75%), 
-        linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+        linear-gradient(45deg, #e6ddcb 25%, transparent 25%), 
+        linear-gradient(-45deg, #e6ddcb 25%, transparent 25%), 
+        linear-gradient(45deg, transparent 75%, #e6ddcb 75%), 
+        linear-gradient(-45deg, transparent 75%, #e6ddcb 75%);
     background-size: 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
     color: var(--text-color);
@@ -264,4 +265,88 @@ footer {
     .gif-row {
         gap: 15px;
     }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #212842; /* Midnight Indigo */
+        --text-color: #F0E7D5; /* Vanilla Cream */
+    }
+
+    body {
+        background-image: 
+            linear-gradient(45deg, #1a2035 25%, transparent 25%), 
+            linear-gradient(-45deg, #1a2035 25%, transparent 25%), 
+            linear-gradient(45deg, transparent 75%, #1a2035 75%), 
+            linear-gradient(-45deg, transparent 75%, #1a2035 75%);
+    }
+
+    .pixel-bubble {
+        background: #212842;
+        border-color: #F0E7D5;
+        color: #F0E7D5;
+    }
+
+    .pixel-bubble::after {
+        border-color: #F0E7D5 transparent;
+    }
+
+    .pixel-bubble::before {
+        border-color: #212842 transparent;
+    }
+
+    .photobooth-strip {
+        background: #2a3252;
+        border-color: #ff6b6b;
+    }
+
+    .gif-playground {
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+/* Expandable Photobooth Styles */
+.photobooth-strip.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important; /* Override hover effects */
+    width: 90vw;
+    height: 90vh;
+    max-width: 600px; /* Don't get too wide on desktop */
+    z-index: 1000;
+    overflow-y: auto;
+    cursor: default;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.8); /* Dim background */
+    justify-content: flex-start; /* Align items to top */
+}
+
+.photobooth-strip.expanded img {
+    height: auto; /* Let images grow */
+    max-height: none;
+}
+
+.back-btn {
+    display: none; /* Hidden by default */
+}
+
+.photobooth-strip.expanded .back-btn {
+    display: block;
+    position: sticky;
+    top: 10px;
+    align-self: flex-end;
+    background: #ff6b6b;
+    color: white;
+    border: 4px solid white;
+    padding: 10px 20px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    z-index: 1001;
+    margin-bottom: 20px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+.photobooth-strip.expanded .back-btn:hover {
+    transform: scale(1.1);
 }
